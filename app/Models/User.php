@@ -13,6 +13,8 @@ use JustSteveKing\KeyFactory\Models\Concerns\HasKey;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Post;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -47,4 +49,12 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function posts() : HasMany
+    {
+        return $this->hasMany(
+            related: Post::class,
+            foreignId: 'user_id'
+        );
+    } 
 }
