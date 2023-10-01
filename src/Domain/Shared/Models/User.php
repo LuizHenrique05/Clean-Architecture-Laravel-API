@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Models;
+namespace Domain\Shared\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,7 +13,7 @@ use JustSteveKing\KeyFactory\Models\Concerns\HasKey;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\Post;
+use Domain\Blogging\Models\Post;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
