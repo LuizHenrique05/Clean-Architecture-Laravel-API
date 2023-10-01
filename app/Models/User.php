@@ -9,14 +9,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use JustSteveKing\KeyFactory\Models\Concerns\HasKeys;
+use JustSteveKing\KeyFactory\Models\Concerns\HasKey;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasKeys;
+    use HasKey;
     use HasFactory;
     use Notifiable;
     use SoftDeletes;
