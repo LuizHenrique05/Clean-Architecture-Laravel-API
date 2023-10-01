@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Domain\Shared\Models\Concerns\HasSlug;
 use JustSteveKing\KeyFactory\Models\Concerns\HasKey;
 use Domain\Shared\Models\User;
+use Domain\Blogging\Models\Builders\PostBuilder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 
@@ -44,6 +45,13 @@ class Post extends Model
         return $this->belongsTo(
             related: User::class,
             foreignKey: 'user_id'
+        );
+    }
+
+    public function newEloquentBuilder($query): PostBuilder
+    {
+        return new PostBuilder(
+            query: $query
         );
     }
 }
