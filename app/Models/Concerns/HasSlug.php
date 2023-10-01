@@ -7,7 +7,7 @@ namespace App\Models\Concerns;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-trait HaSlug
+trait HasSlug
 {
     public static function bootHaSlug() : void
     {
