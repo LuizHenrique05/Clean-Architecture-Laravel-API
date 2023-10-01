@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Post;
+use Domain\Blogging\Models\Post;
 use Illuminate\Support\Str;
 
 class PostFactory extends Factory

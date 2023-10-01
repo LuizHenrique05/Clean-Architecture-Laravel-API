@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Models;
+namespace Domain\Blogging\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Concerns\HaSlug;
 use JustSteveKing\KeyFactory\Models\Concerns\HasKey;
-use App\Models\User;
+use Domain\Shared\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 

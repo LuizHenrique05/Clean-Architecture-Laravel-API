@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Post;
-use App\Models\User;
+use Domain\Blogging\Models\Post;
+use Domain\Shared\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
