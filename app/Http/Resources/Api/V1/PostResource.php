@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Resources\Api\V1;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\Api\V1\UserResource;
 
 class PostResource extends JsonResource
 {
@@ -19,7 +20,9 @@ class PostResource extends JsonResource
                 'description' => $this->description,
                 'published' => $this->published,
             ],
-            'relationships' => [],
+            'relationships' => [
+                'user' => new UserResource($this->whenLoaded('user'))
+            ],
             'links' => [
                 'self' => route('api:v1:posts:show', $this->key),
                 'parent' => route('api:v1:posts:index')
