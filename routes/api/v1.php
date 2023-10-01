@@ -13,4 +13,5 @@ Route::prefix('posts')->as('posts:')->group(function () {
     Route::get('/', App\Http\Controllers\Api\V1\Posts\IndexController::class)->name('index'); // route('api:v1:posts:index')
     Route::post('/', App\Http\Controllers\Api\V1\Posts\StoreController::class)->name('store'); // route('api:v1:posts:store')
     Route::get('{post:key}', App\Http\Controllers\Api\V1\Posts\ShowController::class)->name('show'); // route('api:v1:posts:show')
+    Route::delete('{post:key}', App\Http\Controllers\Api\V1\Posts\DeleteController::class)->name('delete'); // route('api:v1:posts:delete')
 });
