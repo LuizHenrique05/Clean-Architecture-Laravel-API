@@ -11,6 +11,7 @@ use Domain\Blogging\Models\Post;
 use JustSteveKing\StatusCode\Http;
 use Illuminate\Http\JsonResponse;
 use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\AllowedFilter;
 
 class IndexController extends Controller
 {
@@ -20,7 +21,10 @@ class IndexController extends Controller
             subject: Post::class,
         )->allowedIncludes(
             includes: ['user']
-        )->published()->paginate(3);
+        )->allowedFilters([
+            AllowedFilter::scope('published'),
+            AllowedFilter::scope('draft')
+        ])->paginate(3);
 
         return response()->json(
             data: PostResource::collection(
