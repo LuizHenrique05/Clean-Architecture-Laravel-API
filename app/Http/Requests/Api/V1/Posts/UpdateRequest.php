@@ -20,7 +20,7 @@ class UpdateRequest extends FormRequest
                 'nullable',
                 'string',
                 'max:255',
-                $this->get('key')
+                'unique:posts'
             ],
             'body' => [
                 'nullable',
