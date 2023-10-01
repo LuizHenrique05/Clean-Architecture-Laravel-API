@@ -7,23 +7,23 @@ namespace App\Http\Controllers\Api\V1\Posts;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\Posts\StoreRequest;
 use JustSteveKing\StatusCode\Http;
-use Domain\Blogging\Actions\CreatePost;
 use Domain\Blogging\Factories\PostFactory;
-use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
+use App\Jobs\Posts\CreatePost;
 
 class StoreController extends Controller
 {
-    public function __invoke(StoreRequest $request) : jsonResponse
+    public function __invoke(StoreRequest $request) : Response
     {
-        $post = CreatePost::handle(
-            object: PostFactory::create(
+        CreatePost::dispatch(
+            PostFactory::createToStorePost(
                 attributes: $request->validated()
             )
         );
 
-        return response()->json(
-            data: $post,
-            status: Http::CREATED
+        return response(
+            content: null,
+            status: Http::ACCEPTED
         );
     }
 }
