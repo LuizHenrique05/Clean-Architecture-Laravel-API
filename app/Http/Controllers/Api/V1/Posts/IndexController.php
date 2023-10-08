@@ -15,7 +15,7 @@ use Infrastructure\Http\Responses\ApiResponse;
 
 class IndexController extends Controller
 {
-    public function __invoke(Request $request) : ApiResponse
+    public function __invoke(Request $request)
     {
         $posts = QueryBuilder::for(
             subject: Post::class,

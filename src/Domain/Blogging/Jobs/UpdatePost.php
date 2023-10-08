@@ -10,9 +10,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Domain\Blogging\Actions\UpdatePost as UpdatePostAction;
 use Domain\Blogging\ValueObjects\PostValueObject;
 use Domain\Blogging\Models\Post;
+use Illuminate\Support\Str;
+use Domain\Blogging\Aggregates\PostAggregate;
 
 class UpdatePost implements ShouldQueue
 {
@@ -28,9 +29,11 @@ class UpdatePost implements ShouldQueue
 
     public function handle() : void
     {
-        UpdatePostAction::handle(
+        PostAggregate::retrieve(
+            Str::uuid()->toString()
+        )->updatePost(
             object: $this->object,
             post: $this->post
-        );
+        )->persist();
     }
 }
