@@ -9,12 +9,15 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use JustSteveKing\StatusCode\Http;
 use Domain\Blogging\Models\Post;
+use App\Jobs\Posts\DeletePost;
 
 class DeleteController extends Controller
 {
     public function __invoke(Request $request, Post $post) : Response
     {
-        $post->delete();
+        DeletePost::dispatch(
+            $post->id,
+        );
         
         return response(
             content: null,
