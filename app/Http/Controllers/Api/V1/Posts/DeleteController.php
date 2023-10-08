@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use JustSteveKing\StatusCode\Http;
 use Domain\Blogging\Models\Post;
-use App\Jobs\Posts\DeletePost;
+use Domain\Blogging\Jobs\DeletePost;
 
 class DeleteController extends Controller
 {

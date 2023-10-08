@@ -10,7 +10,7 @@ use Domain\Blogging\Models\Post;
 use Domain\Blogging\Factories\PostFactory;
 use App\Http\Requests\Api\V1\Posts\UpdateRequest;
 use JustSteveKing\StatusCode\Http;
-use App\Jobs\Posts\UpdatePost;
+use Domain\Blogging\Jobs\UpdatePost;
 
 class UpdateController extends Controller
 {

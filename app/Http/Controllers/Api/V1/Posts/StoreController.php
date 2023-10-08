@@ -9,7 +9,7 @@ use App\Http\Requests\Api\V1\Posts\StoreRequest;
 use JustSteveKing\StatusCode\Http;
 use Domain\Blogging\Factories\PostFactory;
 use Illuminate\Http\Response;
-use App\Jobs\Posts\CreatePost;
+use Domain\Blogging\Jobs\CreatePost;
 
 class StoreController extends Controller
 {

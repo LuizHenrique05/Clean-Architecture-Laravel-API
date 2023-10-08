@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Jobs\Posts;
+namespace Domain\Blogging\Jobs;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -10,9 +10,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Domain\Blogging\Actions\DeletePost as DeletePostAction;
+use Domain\Blogging\Actions\CreatePost as CreatePostAction;
+use Domain\Blogging\ValueObjects\PostValueObject;
 
-class DeletePost implements ShouldQueue
+class CreatePost implements ShouldQueue
 {
     use Queueable;
     use Dispatchable;
@@ -20,13 +21,13 @@ class DeletePost implements ShouldQueue
     use InteractsWithQueue;
 
     public function __construct(
-        public int $postId
+        public PostValueObject $object
     ) {}
 
     public function handle() : void
     {
-        DeletePostAction::handle(
-            postId: $this->postId
+        CreatePostAction::handle(
+            object: $this->object
         );
     }
 }
