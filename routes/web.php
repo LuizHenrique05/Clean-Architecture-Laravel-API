@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Spatie\Period\Period;
 
 Route::view('/', 'welcome')->name('home');
 
@@ -12,6 +13,14 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+});
+
+Route::get('/posts-reports', function () {
+    $report = new \Domain\Blogging\Reports\PostsCreatedOverPeriod(
+        Period::make('2023-10-07', '2023-10-08')
+    );
+    
+    dd($report->totalPosts());
 });
 
 Route::prefix('posts')->as('posts:')->group(function () {
