@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider;
 
 use Spatie\EventSourcing\Facades\Projectionist;
 use Domain\Blogging\Projectors\PostProjector;
+use Domain\Blogging\Reactors\PostReactor;
 
 class EventSourcingServiceProvider extends ServiceProvider
 {
@@ -15,6 +16,10 @@ class EventSourcingServiceProvider extends ServiceProvider
     {
         Projectionist::addProjectors(
             projectors: [PostProjector::class]
+        );
+
+        Projectionist::addReactors(
+            reactors: [PostReactor::class]
         );
     }
 
