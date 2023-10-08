@@ -10,8 +10,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Domain\Blogging\Actions\CreatePost as CreatePostAction;
 use Domain\Blogging\ValueObjects\PostValueObject;
+use Illuminate\Support\Str;
+use Domain\Blogging\Aggregates\PostAggregate;
 
 class CreatePost implements ShouldQueue
 {
@@ -26,8 +27,11 @@ class CreatePost implements ShouldQueue
 
     public function handle() : void
     {
-        CreatePostAction::handle(
-            object: $this->object
-        );
+        PostAggregate::retrieve(
+            Str::uuid()->toString()
+        )->createPost(
+            object: $this->object,
+            userId: 1
+        )->persist();
     }
 }
