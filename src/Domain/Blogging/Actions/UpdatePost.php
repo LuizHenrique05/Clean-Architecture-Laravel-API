@@ -6,7 +6,6 @@ namespace Domain\Blogging\Actions;
 
 use Domain\Blogging\ValueObjects\PostValueObject;
 use Domain\Blogging\Models\Post;
-use Illuminate\Support\Str;
 
 class UpdatePost
 {
