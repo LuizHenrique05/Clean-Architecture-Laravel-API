@@ -9,13 +9,13 @@ use Illuminate\Http\Request;
 use App\Http\Resources\Api\V1\PostResource;
 use Domain\Blogging\Models\Post;
 use JustSteveKing\StatusCode\Http;
-use Illuminate\Http\JsonResponse;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
+use Infrastructure\Http\Responses\ApiResponse;
 
 class IndexController extends Controller
 {
-    public function __invoke(Request $request) : jsonResponse
+    public function __invoke(Request $request) : ApiResponse
     {
         $posts = QueryBuilder::for(
             subject: Post::class,
@@ -24,9 +24,9 @@ class IndexController extends Controller
         )->allowedFilters([
             AllowedFilter::scope('published'),
             AllowedFilter::scope('draft')
-        ])->paginate(3);
+        ])->paginate();
 
-        return response()->json(
+        return ApiResponse::handle(
             data: PostResource::collection(
                 resource: $posts,
             ),
