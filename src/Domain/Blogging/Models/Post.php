@@ -7,17 +7,14 @@ namespace Domain\Blogging\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Domain\Shared\Models\Concerns\HasSlug;
-use JustSteveKing\KeyFactory\Models\Concerns\HasKey;
 use Domain\Shared\Models\User;
 use Domain\Blogging\Models\Builders\PostBuilder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-
+use Domain\Blogging\Models\Concerns\IsPost;
 
 class Post extends Model
 {
-    use HasKey;
-    use HasSlug;
+    use IsPost;
     use HasFactory;
     use SoftDeletes;
 
