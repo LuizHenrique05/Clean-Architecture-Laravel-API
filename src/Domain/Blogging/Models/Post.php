@@ -11,6 +11,7 @@ use Domain\Shared\Models\User;
 use Domain\Blogging\Models\Builders\PostBuilder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Domain\Blogging\Models\Concerns\IsPost;
+use Database\Factories\PostFactory;
 
 class Post extends Model
 {
@@ -35,6 +36,11 @@ class Post extends Model
     public function getRouteKeyName() : string
     {
         return 'key';
+    }
+
+    protected static function newFactory() : PostFactory
+    {
+        return resolve(PostFactory::class);
     }
 
     public function user() : BelongsTo

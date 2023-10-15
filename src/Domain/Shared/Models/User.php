@@ -15,6 +15,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Domain\Blogging\Models\Post;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Database\Factories\UserFactory;
 
 class User extends Authenticatable
 {
@@ -49,6 +50,11 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    protected static function newFactory() : UserFactory
+    {
+        return resolve(UserFactory::class);
+    }
 
     public function posts() : HasMany
     {
